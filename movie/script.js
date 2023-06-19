@@ -60,11 +60,12 @@ function loadMovieDetails(){
             const movieDetails = await result.json();
             // console.log(movieDetails);
             displayMovieDetails(movieDetails);
+            showInfo();
         });
     });
 }
 
-function displayMovieDetails(details){
+function displayMovieDetails(details) {
     resultGrid.innerHTML = `
     <div class = "movie-poster">
         <img src = "${(details.Poster != "N/A") ? details.Poster : "image_not_found.png"}" alt = "movie poster">
@@ -76,16 +77,38 @@ function displayMovieDetails(details){
             <li class = "rated">Ratings: ${details.Rated}</li>
             <li class = "released">Released: ${details.Released}</li>
         </ul>
+        <div class = "more-info">
+            <button id="btn-more-info" onclick="showInfo();">Show more info</button>
+        </div>
+        <div id="moreText">
         <p class = "genre"><b>Genre:</b> ${details.Genre}</p>
         <p class = "writer"><b>Writer:</b> ${details.Writer}</p>
         <p class = "actors"><b>Actors: </b>${details.Actors}</p>
         <p class = "language"><b>Language:</b> ${details.Language}</p>
         <p class = "awards"><b><i class = "fas fa-award"></i></b> ${details.Awards}</p>
+        </div>
     </div>
-    <div class="movie-plot">
+    <div class = "movie-plot" id="moreTextPlot">
         <p class = "plot"><b>Plot:</b> ${details.Plot}</p>
     </div>
     `;
+}
+
+
+function showInfo() {
+    var moreText = document.getElementById("moreText");
+    var moreTextPlot = document.getElementById("moreTextPlot");
+    var btnText = document.getElementById("btn-more-info");
+
+    if (moreText.style.display === "none") {
+        moreText.style.display = "block";
+        moreTextPlot.style.display = "block";
+        btnText.innerHTML = "Show less info";
+    } else {
+        btnText.innerHTML = "Show more info";
+        moreText.style.display = "none";
+        moreTextPlot.style.display = "none";
+   }
 }
 
 
