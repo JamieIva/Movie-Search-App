@@ -267,8 +267,7 @@ img{
 .movie-plot .plot{
     max-width: 800px;
     font-size: 1.7rem;
-    margin: 1rem auto;
-    
+    margin: 1rem auto;   
 }
 
 @media(max-width: 450px){
